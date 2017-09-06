@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+    com.qishon.common.config.WebHttpAdapter,\
+    com.qishon.common.config.swagger.SwaggerConfiguration

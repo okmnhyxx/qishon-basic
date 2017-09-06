@@ -1,0 +1,53 @@
+{
+  "groups": [
+    {
+      "name": "qishon"
+    }
+  ],
+  "properties": [
+    {
+      "name": "qishon.rest.docs.service.name",
+      "type": "java.lang.String",
+      "description": "the service name.",
+      "defaultValue": "服务名称"
+    },
+    {
+      "name": "qishon.rest.docs.service.apis",
+      "type": "java.util.List<java.lang.String>",
+      "description": "must required! one package of controller shown in swagger. like 'com.qishon.xxx.controller'.",
+      "defaultValue": "com.qishon"
+    },
+    {
+      "name": "qishon.rest.docs.service.desc",
+      "type": "java.lang.String",
+      "description": "the service description.",
+      "defaultValue": "服务说明"
+    },
+    {
+      "name": "qishon.rest.docs.service.version",
+      "type": "java.lang.String",
+      "description": "the service version.",
+      "defaultValue": ""
+    }
+  ,
+    {
+      "name": "qishon.rest.docs.service.contact.name",
+      "type": "java.lang.String",
+      "description": "the service creator or maintainer's name.",
+      "defaultValue": "服务创建者或维护者姓名"
+    },
+    {
+      "name": "qishon.rest.docs.service.contact.url",
+      "type": "java.lang.String",
+      "description": "the service creator or maintainer's self-url, or the url address of the service.",
+      "defaultValue": "服务创建者或维护者博客或github地址，也可以当成服务地址"
+    },
+    {
+      "name": "qishon.rest.docs.service.contact.email",
+      "type": "java.lang.String",
+      "description": "the service creator or maintainer's email.",
+      "defaultValue": "服务创建者或维护者邮箱"
+    }
+  ],
+  "hints": []
+}
