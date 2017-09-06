@@ -1,7 +1,7 @@
 package com.qishon.common.common;
 
 /**
- * Created by emi on 2017/1/4.
+ * @author kexia.lu on 2017/8/11.
  */
 public enum TimeUnitType {
 

@@ -1,7 +1,7 @@
 package com.qishon.common.common;
 
 /**
- * Created by emi on 2017/3/24.
+ * @author kexia.lu on 2017/8/11.
  */
 public enum RandomType {
 
