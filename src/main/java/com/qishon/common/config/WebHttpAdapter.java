@@ -12,7 +12,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 public class WebHttpAdapter extends WebMvcConfigurerAdapter {
 
-
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new RequestApiInterceptor()).addPathPatterns("/**").excludePathPatterns("/swagger-resources");
@@ -28,16 +27,5 @@ public class WebHttpAdapter extends WebMvcConfigurerAdapter {
         registration.setOrder(1);
         return registration;
     }
-
-//    class AuthorizeInterceptor extends HandlerInterceptorAdapter {
-//
-//        public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-//            String userId = request.getHeader("auth");
-//            if (StringUtils.isEmpty(request.getHeader("auth")) || "0".equals(userId)) {
-////                throw new RestException(ErrorCode.CODE_401, "", "");
-//            }
-//            return super.preHandle(request, response, handler);
-//        }
-//    }
 
 }

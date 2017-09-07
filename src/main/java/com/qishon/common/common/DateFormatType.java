@@ -3,6 +3,7 @@ package com.qishon.common.common;
 
 /**
  * @author kexia.lu on 2017/8/11.
+ * 日期格式
  */
 public enum DateFormatType {
 

@@ -91,32 +91,32 @@ public class BaseUtils {
     public static Date generateTimeOut(Date date, TimeUnitType unitType, int outDegree, boolean ifAfter) {
         Calendar cld = Calendar.getInstance();
         cld.setTime(date);
-        int degree = unitType.ordinal() + 1;
+        int degree = unitType.ordinal();
         if (ifAfter) {
-            if (1 == degree) {
+            if (0 == degree) {
                 int minute =  cld.get(Calendar.MINUTE) + outDegree;
                 cld.set(Calendar.MINUTE, minute);
-            } else if (2 == degree) {
+            } else if (1 == degree) {
                 int hour = cld.get(Calendar.HOUR) + outDegree;
                 cld.set(Calendar.HOUR, hour);
-            } else if (3 == degree) {
+            } else if (2 == degree) {
                 int day = cld.get(Calendar.DATE) + outDegree;
                 cld.set(Calendar.DATE, day);
-            } else if (4 == degree) {
+            } else if (3 == degree) {
                 int month = cld.get(Calendar.MONTH) + outDegree;
                 cld.set(Calendar.MONTH, month);
             }
         } else {
-            if (1 == degree) {
+            if (0 == degree) {
                 int minute =  cld.get(Calendar.MINUTE) - outDegree;
                 cld.set(Calendar.MINUTE, minute);
-            } else if (2 == degree) {
+            } else if (1 == degree) {
                 int hour = cld.get(Calendar.HOUR) - outDegree;
                 cld.set(Calendar.HOUR, hour);
-            } else if (3 == degree) {
+            } else if (2 == degree) {
                 int day = cld.get(Calendar.DATE) - outDegree;
                 cld.set(Calendar.DATE, day);
-            } else if (4 == degree) {
+            } else if (3 == degree) {
                 int month = cld.get(Calendar.MONTH) - outDegree;
                 cld.set(Calendar.MONTH, month);
             }
@@ -136,6 +136,12 @@ public class BaseUtils {
         return calendar.getTimeInMillis();
     }
 
+    /**
+     * long型时间转字符串
+     * @param formatType 见DateFormatType
+     * @param createTime 时间磋
+     * @return
+     */
     public static String longToString(DateFormatType formatType, long createTime) {
         if (0 == createTime) {
             return "/";

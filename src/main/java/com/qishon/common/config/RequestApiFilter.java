@@ -3,7 +3,6 @@ package com.qishon.common.config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
 import org.springframework.util.StreamUtils;
 import org.springframework.util.StringUtils;
 
@@ -18,7 +17,6 @@ import java.io.*;
  */
 @Order(100)
 @WebFilter(filterName = "RequestApiFilter", urlPatterns = "/**")
-@Component
 public class RequestApiFilter implements Filter {
 
     Logger log = LoggerFactory.getLogger(RequestApiFilter.class);
@@ -27,23 +25,29 @@ public class RequestApiFilter implements Filter {
     public void init(FilterConfig filterConfig) throws ServletException {
     }
 
+    /**
+     * 过滤打印请求的json格式参数
+     * @param servletRequest request
+     * @param servletResponse response
+     * @param filterChain 过滤链
+     */
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
 
-        if (servletRequest instanceof HttpServletRequest) {
+            if (servletRequest instanceof HttpServletRequest) {
 
-            if (!((HttpServletRequest)servletRequest).getRequestURI().equals("/swagger-resources")) {
+                if (!((HttpServletRequest)servletRequest).getRequestURI().equals("/swagger-resources")) {
 
-                MyHttpServletRequestWrapper requestWrapper = new MyHttpServletRequestWrapper((HttpServletRequest) servletRequest);
-                String jsonParam = requestWrapper.getRequestBody();
-                if (!StringUtils.isEmpty(jsonParam)) {
-                    log.info("" + jsonParam);
+                    MyHttpServletRequestWrapper requestWrapper = new MyHttpServletRequestWrapper((HttpServletRequest) servletRequest);
+                    String jsonParam = requestWrapper.getRequestBody();
+                    if (!StringUtils.isEmpty(jsonParam)) {
+                        log.info("\n" + jsonParam);
+                    }
+                    filterChain.doFilter(requestWrapper, servletResponse);
+                    return;
                 }
-                filterChain.doFilter(requestWrapper, servletResponse);
-                return;
             }
-        }
-        filterChain.doFilter(servletRequest, servletResponse);
+            filterChain.doFilter(servletRequest, servletResponse);
     }
 
     @Override
@@ -56,16 +60,8 @@ public class RequestApiFilter implements Filter {
 
         private byte[] requestBody = null;
 
-        // 传入是JSON格式 转换成JSONObject
-        public String getRequestBody() throws UnsupportedEncodingException {
-            return null == requestBody || 0 == requestBody.length ? "" : new String(requestBody);
-        }
-
-
-        public MyHttpServletRequestWrapper(HttpServletRequest request) {
-
+        MyHttpServletRequestWrapper(HttpServletRequest request) {
             super(request);
-
             try {
                 requestBody = StreamUtils.copyToByteArray(request.getInputStream());
             } catch (IOException e) {
@@ -106,5 +102,10 @@ public class RequestApiFilter implements Filter {
         public BufferedReader getReader() throws IOException {
             return new BufferedReader(new InputStreamReader(getInputStream()));
         }
+
+        String getRequestBody() throws UnsupportedEncodingException {
+            return null == requestBody || 0 == requestBody.length ? "" : new String(requestBody);
+        }
+
     }
 }

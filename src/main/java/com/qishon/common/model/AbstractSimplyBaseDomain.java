@@ -17,12 +17,18 @@ import java.io.Serializable;
 @EntityListeners(AuditingEntityListener.class)
 public class AbstractSimplyBaseDomain implements Serializable {
 
+    /**
+     * 主键
+     */
     @Id
     @GeneratedValue
     private long id;
 
+    /**
+     * 创建时间
+     */
     @CreatedDate
-    private long createTime; //创建时间
+    private long createTime;
 
     @Override
     public boolean equals(Object obj) {

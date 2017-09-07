@@ -14,15 +14,27 @@ import javax.persistence.MappedSuperclass;
 @EntityListeners(AuditingEntityListener.class)
 public abstract class AbstractBaseDomain extends AbstractSimplyBaseDomain {
 
+    /**
+     * 最后修改时间
+     */
     @LastModifiedDate
-    private long lastUpdateTime; //最后修改时间
+    private long lastUpdateTime;
 
-    private String createBy; //创建人
+    /**
+     * 创建人
+     */
+    private String createBy;
 
-    private String lastModifyBy; //修改人
+    /**
+     * 修改人
+     */
+    private String lastModifyBy;
 
+    /**
+     * 是否未被删除   false：未被删除  true：软删除
+     */
     @Column(columnDefinition = "tinyint(1) default 0 comment '是否未被删除(false：未被删除  true：软删除)'")
-    private boolean deleted; //是否未被删除   false：未被删除  true：软删除
+    private boolean deleted;
 
     public long getLastUpdateTime() {
         return lastUpdateTime;
