@@ -25,6 +25,7 @@ public interface BaseErrorCode {
      * 实体从属异常
      */
     int DOMAIN_NOT_BELONGS = 200003;
+
     /**
      * 记录不存在
      */
